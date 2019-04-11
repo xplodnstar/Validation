@@ -5,22 +5,21 @@ import './Form.css';
 
 
 
-function validate(name, email, website, user, pass, confirm) {
+function validate(name, email, website, user, pass, confirm, species) {
     const errors = [];
 
     if (validator.isEmpty(name)) {
         errors.push("Name may not be empty");
+        // create state of nameErr starting as blank and add to the label
+        // setState "cannot be blank". plus create a setState to clear upon fix
+        // create class for label and field with alternate color. Add the class upon error
     }
 
-    if (validator.isEmail(email)) {
-        return true
-    } else {
+    if (!validator.isEmail(email)) {
         errors.push("Email is invalid")
     }
 
-    if (validator.isURL(website)) {
-        return true
-    } else {
+    if (!validator.isURL(website)) {
         errors.push("Website is invalid");
     }
 
@@ -33,11 +32,15 @@ function validate(name, email, website, user, pass, confirm) {
     }
 
     if (pass.length < 5 || pass.length > 20) {
-        errors.push("Password must be at 5 to 20 characters");
+        errors.push("Password must be 5 to 20 characters");
     }
 
     if (pass !== confirm) {
         errors.push("Confirmation must match the password");
+    }
+
+    if (species !== 'human') {
+        errors.push("You are a robot!");
     }
 
     return errors;
@@ -53,23 +56,35 @@ class Form extends Component {
             user: '',
             pass: '',
             confirm: '',
+            species: '',
 
             errors: []
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    handleOptionChange = (e) => {
+        this.setState({
+            species: e.target.value
+        });
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
 
-        const { name, email, website, user, pass, confirm } = this.state;
+        let valid = true
 
-        const errors = validate(name, email, website, user, pass, confirm);
+        const { name, email, website, user, pass, confirm, species } = this.state;
+
+        const errors = validate(name, email, website, user, pass, confirm, species);
         if (errors.length > 0) {
+            valid = false
             this.setState({ errors });
             return;
         }
-        this.props.history.push('/submit')
+        if (valid === true) {
+            this.props.history.push('/submit')
+        }
     };
 
     render() {
@@ -88,6 +103,7 @@ class Form extends Component {
                                 <div>
                                     <label htmlFor="name">What is your name?</label><br></br>
                                     <input type="text" placeholder="John Smith" name="name" id="name" value={this.state.name} onChange={evt => this.setState({ name: evt.target.value })}></input>
+                                    {/* ^ onChange could also be separate and more generic for all fields */}
                                 </div>
                                 <div>
                                     <label htmlFor="email">What is your email?</label><br></br>
@@ -114,9 +130,9 @@ class Form extends Component {
                             </div>
                             <div>
                                 <label htmlFor="species" id="species">Are you a ...?</label><br></br>
-                                <input type="radio" name="species" id="dalek"></input>Dalek<br></br>
-                                <input type="radio" name="species" id="cyber"></input>Cyberman<br></br>
-                                <input type="radio" name="species" id="human"></input>Human
+                                <input type="radio" name="species" id="dalek" value="dalek" checked={this.state.species === 'dalek'} onChange={this.handleOptionChange}></input>Dalek<br></br>
+                                <input type="radio" name="species" id="cyber" value="cyber" checked={this.state.species === 'cyber'} onChange={this.handleOptionChange}></input>Cyberman<br></br>
+                                <input type="radio" name="species" id="human" value="human" checked={this.state.species === 'human'} onChange={this.handleOptionChange}></input>Human
                             </div>
                             <button type="submit"><Link to="./submit"></Link>Scan Me</button>
                         </div>
