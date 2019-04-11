@@ -33,7 +33,7 @@ function validate(name, email, website, user, pass, confirm) {
     }
 
     if (pass.length < 5 || pass.length > 20) {
-        errors.push("Password must be at 5 to 20 characters");
+        errors.push("Password must be 5 to 20 characters");
     }
 
     if (pass !== confirm) {
