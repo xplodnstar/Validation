@@ -1,0 +1,77 @@
+.error {
+    margin: 0px 5px;
+    position: relative;
+}
+
+.page {
+    width: 750px;
+    margin: 10px 20%;
+    position: absolute;
+    top: 0;
+}
+
+.page h1 {
+    font-size: 50px;
+    text-align: center;
+    margin: 0;
+}
+
+.page h4 {
+    font-size: 30px;
+    text-align: center;
+    margin: 0 0 10px;
+}
+
+.form {
+    margin: 0px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.formSplit {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+label {
+    font-size: 20px;
+    margin: 5px 0 2px;
+}
+
+input {
+    font-size: 20px;
+    margin: 5px 0 10px;
+    width: 300px;
+}
+
+#species {
+    width: 100px;
+    margin: 0 40px;
+}
+
+#dalek {
+    width: 100px;
+    margin: 0 40px;
+}
+
+#cyber {
+    width: 100px;
+    margin: 0 40px;
+}
+
+#human {
+    width: 100px;
+    margin: 0 40px;
+}
+
+button {
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: azure;
+    font-size: 20px;
+    margin: 50px 170px;
+   
+}

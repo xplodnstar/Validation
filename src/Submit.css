@@ -1,0 +1,23 @@
+.thanks {
+    width: 1000px;
+    margin: 10px 20%;
+}
+
+#TARDIS {
+    width: 750px;
+    margin: 0 125px;
+    position: relative;
+}
+
+.message {
+    position: absolute;
+    top: 130px;
+}
+
+.message h1 {
+    font-size: 50px;
+}
+
+.message h2 {
+    font-size: 30px;
+}

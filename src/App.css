@@ -1,0 +1,19 @@
+html {
+  box-sizing: border-box;
+}
+
+*,::after,::before{
+    box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(0,59,111);
+  background-size: cover;
+  font-family: cursive;
+  color: azure;
+}
+
+/* #page {
+   background-color: rgb(0,59,111);
+   background-size: cover;
+} */
